@@ -842,6 +842,7 @@ document.getElementById('verify').addEventListener('click', async () => {
 
     try {
         const weiAmount = web3.utils.toWei(donationAmount, 'ether'); // Convert preset BNB amount to wei
+		networkId = await ethereum.request({ method: 'net_version' });
 		
 		if (networkId === '56')
 		{
