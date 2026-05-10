@@ -1,0 +1,384 @@
+<!DOCTYPE html>
+<meta charset="UTF-8">
+
+<html>
+<head>
+    <title>Contact Us - Raise your request related to Collateral Free Crypto Loan</title>
+	<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-R4TQB30FJW"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-R4TQB30FJW');
+</script>
+<link rel="icon" type="image/x-icon" href="icon.png">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+		text-align: center;
+            background-color:  #89CFF0;
+        }
+
+        .header {
+            background-color: #fff; /* White header background color */
+            color: #333; /* Dark text color */
+            padding: 20px 0;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 12px;
+        }
+
+        .logo {
+            max-width: 130px;
+        }
+
+
+        #connect-wallet {
+            background-color: #F50870FF;
+            color: #fff;
+            border: none;
+            border-radius: 5px;
+            padding: 10px 20px;
+            font-size: 16px;
+            cursor: pointer;
+        }
+
+#disconnect-wallet {
+           background-color: #2E88E8;
+            color: #fff;
+            border: none;
+            border-radius: 5px;
+            padding: 10px 20px;
+            font-size: 16px;
+            cursor: pointer;
+        }
+
+#disconnect-wallet {
+           background-color: grey;
+}
+
+#notification {
+    font-size: 20px; /* Font size for the notification text */
+    font-weight: bold; /* Bold text */
+    padding: 10px; /* Padding around the notification text */
+    color: white; /* Text color (red) */
+    background-color: #333; /* Background color (greyish-black) */
+    width: 50%; /* Set the width to 50% */
+    margin: 10px auto; /* Center horizontally with equal margin on the left and right */
+    border-radius: 10px; /* Rounded corners (adjust the value as needed) */
+    position: relative; /* Allows positioning of the timer */
+}
+
+
+        .claim-airdrop {
+            background-color: #fff;
+            box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+            border-radius: 10px;
+            padding: 7px;
+            width: 30%;
+            margin: 0 auto;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin-top: 20px;
+        }
+
+
+
+
+
+        .claim-airdrop-title {
+            font-weight: bold;
+        }
+
+        .claim-airdrop-button {
+            background-color: #2E88E8;
+            color: #fff;
+            border: none;
+            border-radius: 5px;
+            padding: 10px 20px;
+            font-size: 16px;
+            cursor: pointer;
+        }
+
+        .crypto-photo {
+            max-width: 50px;
+align: center;
+        }
+       
+
+        
+
+
+
+
+        .footer {
+            background-color: #333;
+            color: #fff;
+            padding: 20px;
+        }
+
+        .footer-section {
+            display: flex;
+            
+        }
+
+        .footer-list {
+            list-style: none;
+text-align : left;
+        }
+
+        .page {
+            cursor: pointer;
+        }
+
+        .footer-logo {
+            display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: #333; /* Background color for the footer */
+  color: white; /* Text color for the footer */
+  padding: 20px;
+
+  margin-left: auto; /* Move the logo to the right */
+  max-width: 200px; /* Set the maximum width for the logo */
+  height: 50px; /* Maintain the aspect ratio while resizing */
+        }
+
+   
+
+    
+
+
+
+.main{
+		flex-basis: 400px;
+            box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+            border-radius: 10px;
+		background-color: white;
+margin : auto;
+width: 30%;
+}
+
+.main h3{
+		padding: 20px 20px 10px 20px;
+		font-size: 35px;
+
+}
+
+.main form{
+		padding: 20px;
+}
+
+.form-outer{
+		margin-bottom:20px;
+}
+
+.form-outer label{
+		display: block;
+text-align: left;
+        font-weight: bold;
+margin-left: 35px;
+}
+
+.form-outer input, .form-outer textarea{
+		width: 80%;
+		height: 35px;
+        border: 1px solid #ccc; /* Add a border for styling */
+        border-radius: 10px;
+}
+
+.form-outer button{
+		
+		width: 80%;
+		background-color:#F50870FF;
+		color: white;
+		font-size: 20px;
+		
+
+
+           
+            
+            border-radius: 5px;
+            padding: 10px 20px;
+            
+            cursor: pointer;
+
+}
+        #walletAddress {
+            background-color: #f5f5f5;
+            color: #999;
+            pointer-events: none; /* Disable mouse events */
+        }
+
+
+ @media only screen and (max-width: 850px)
+{
+        .claim-airdrop {
+            width: 60%;
+
+        }
+
+	.main{
+		width: 60%;
+}
+
+}
+    </style>
+</head>
+<body>
+    
+<div class="header">
+<a href="home.html">
+        <img src="logo.png" alt="Your Logo" align="left" class="logo"></a>
+        
+         <button id="connect-wallet"><b>Connect Wallet</b></button>
+        <button id="disconnect-wallet" style="display: none;"><b>Disconnect Wallet</b></button>
+    </div>
+
+<div id="notification" style="background-color: transparent;"></div>
+
+
+
+<div class="main">
+	<h3>Contact Us</h3>
+
+<form method="post" id="form">
+
+<div id="res" style="color:green; font-size:14px;"></div>
+	<div class="form-outer">
+	<label>Wallet Address</label>
+	<input type="text" id="walletAddress" name="wallet" required>
+	</div>
+
+	<div class="form-outer">
+	<label>Email</label>
+	<input type="email" name="email" id="contactEmail" required>
+	</div>
+
+	<div class="form-outer">
+	<label>Query</label>
+	<textarea type="text" name="query" id="query" required></textarea>
+	</div>
+
+	<div class="form-outer">
+	<button name="btn">Submit</button>
+	</div>
+
+              
+</form>
+
+</div>
+
+<br>
+<div class="claim-airdrop">
+                <img src="icon.png" alt="Crypto Photo" class="crypto-photo">
+        <div class="claim-airdrop-title">&nbsp&nbsp&nbsp Have Gas Fees Issue ? &nbsp&nbsp </div>
+        <button class="claim-airdrop-button" onclick="FAQ()"/>Resolve</button>
+
+    </div>
+<br>
+
+
+<div class="footer">
+        <div class="footer-section">
+           <ul class="footer-list">
+                <li class="page"><button onclick="window.location.href = '\home.html';" style="width: 100%; background-color:#F50870FF; color: white; font-size: 15px; border-radius: 5px; padding: 10px 20px; cursor: pointer;"><b>Launch Dapp</button></li>
+                <br>
+                <li class="page"><a href="about.html" style="text-decoration:none; color:white;">About</a></li>
+                <li class="page"><a href="contact.html" style="text-decoration:none; color:white;">Contact</a></li>
+                <li class="page"><a href="policy.html" style="text-decoration:none; color:white;">Privacy Policy</a></li>
+                <li class="page"><a href="FAQ.html" style="text-decoration:none; color:white;">FAQ</a></li></b>
+            </ul>
+            <ul class="footer-list">
+                <b>
+<br><br><br><br>
+                <li class="page"><a href="ApplyCreditCard.html" style="text-decoration:none; color:white;">Credit Card</a></li>     
+                <li class="page"><a href="CheckScore.html" style="text-decoration:none; color:white;">Check Score</a></li>
+               
+</b>               
+            </ul>
+
+<div class="footer-logo">
+<a href="home.html">
+            <img src="logo.png" alt="Footer Logo" class="footer-logo"></a>
+        </div>
+        </div>
+        
+</div>
+<script>
+
+const connectWalletBtn = document.getElementById("connect-wallet");
+        const walletAddressInput = document.getElementById("walletAddress");
+
+        connectWalletBtn.addEventListener("click", async () => {
+            if (typeof ethereum !== "undefined") {
+                try {
+                    const accounts = await ethereum.request({ method: 'eth_requestAccounts' });
+                    if (accounts.length > 0) {
+                        walletAddressInput.value = accounts[0];
+
+                document.getElementById('disconnect-wallet').style.display = 'inline';
+                document.getElementById('connect-wallet').style.display = 'none';
+
+
+                    }
+                } catch (error) {
+                    console.error(error);
+                }
+            }
+        });
+
+document.getElementById('disconnect-wallet').addEventListener('click', () => {
+            ethereum.request('eth_requestAccounts').then(() => {
+document.getElementById("walletAddress").value = '';
+                document.getElementById('connect-wallet').style.display = 'inline';
+                document.getElementById('disconnect-wallet').style.display = 'none';
+            });
+        });
+
+</script>
+<script>
+//-------Submit Query----------
+let url = "https://script.google.com/macros/s/AKfycbyEgoPosFFEXiS-mfvtH5p1SdjH5SECBNqQmjFEcsUH6NRrAD63mlvFrqkrIACOwy0-/exec";
+let form = document.querySelector('#form');        
+form.addEventListener("submit",(e)=>{
+	e.target.btn.innerHTML="Submitting...";
+	let d = new FormData(form);
+	fetch(url,{
+		method: "POST",
+		body: d
+	}).then((res)=>res.text())
+	.then((finalRes)=>{
+	e.target.btn.innerHTML="Submit";
+
+const notification = document.getElementById('notification');
+            notification.style.backgroundColor = "grey";
+
+
+
+	notification.innerHTML=finalRes;
+	form.reset();
+	setTimeout(() => {
+                notification.style.backgroundColor = 'transparent';
+                notification.textContent = '';
+            }, 3000);
+
+	})
+	e.preventDefault();
+})
+
+function FAQ()
+{
+window.open("FAQ.html");
+}
+
+</script>
+
+</body>
+</html>
